@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import ProductCard from '@/components/product/ProductCard'
 
-export const revalidate = 60 // Revalidate every minute
+export const dynamic = 'force-dynamic' // Always fetch live products
 
 export default async function ShopPage({
   searchParams,

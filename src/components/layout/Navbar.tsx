@@ -26,6 +26,7 @@ export default function Navbar() {
                 <Link href="/shop/diwali" className="text-lg">Diwali</Link>
                 <Link href="/shop/navratri" className="text-lg">Navratri</Link>
                 <Link href="/shop/ganesh-chaturthi" className="text-lg">Ganesh Chaturthi</Link>
+                <Link href="/shop/christmas" className="text-lg">Christmas</Link>
                 <Link href="/about" className="text-lg font-semibold mt-4">About</Link>
                 <Link href="/contact" className="text-lg font-semibold">Contact</Link>
               </nav>
@@ -46,6 +47,7 @@ export default function Navbar() {
                   <Link href="/shop/diwali" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Diwali</Link>
                   <Link href="/shop/navratri" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Navratri</Link>
                   <Link href="/shop/ganesh-chaturthi" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Ganesh Chaturthi</Link>
+                  <Link href="/shop/christmas" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Christmas</Link>
                 </div>
               </div>
             </div>

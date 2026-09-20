@@ -47,7 +47,7 @@ export async function createProduct(formData: FormData) {
   // Insert multiple categories
   if (category_ids && category_ids.length > 0) {
     const categoryMappings = category_ids.map(id => ({
-      product_id: newProduct.id,
+      product_id: (newProduct as any).id,
       category_id: id
     }))
     
