@@ -108,13 +108,6 @@ export default async function ProductDetailPage({
 
         {/* Product Details */}
         <div className="flex flex-col">
-          <div className="mb-2 flex flex-wrap gap-2">
-            {categories.map((category: any, idx: number) => (
-              <a key={idx} href={`/shop/${category.slug}`} className="text-sm font-medium text-primary hover:underline uppercase tracking-wider">
-                {category.name}
-              </a>
-            ))}
-          </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">{product.name}</h1>
           
           <div className="flex items-end gap-4 mb-6">
