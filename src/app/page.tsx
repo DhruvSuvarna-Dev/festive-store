@@ -7,7 +7,7 @@ import Image from 'next/image'
 import ProductCard from '@/components/product/ProductCard'
 import { cn } from '@/lib/utils'
 
-export const revalidate = 3600 // Revalidate every hour
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   const supabase = await createClient()
