@@ -81,6 +81,14 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
+                <div className="space-y-2 border-b pb-4 mb-4">
+                  <Label htmlFor="password">Password (Required to save your order)</Label>
+                  <Input id="password" name="password" type="password" required placeholder="••••••••" minLength={6} />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Your account will be securely created or logged into automatically.
+                  </p>
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
                   <Input id="phone" name="phone" type="tel" required placeholder="+91 9876543210" />

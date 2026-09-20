@@ -62,9 +62,7 @@ export default function LoginPage() {
             </Button>
             <div className="text-sm text-center">
               Don&apos;t have an account?{' '}
-              <Link href="/signup" className="underline">
-                Sign up
-              </Link>
+              <span className="text-foreground">Simply create one during Checkout!</span>
             </div>
           </CardFooter>
         </form>

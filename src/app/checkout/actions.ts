@@ -7,10 +7,11 @@ import { CartItem } from '@/lib/context/CartContext'
 export async function processCheckout(formData: FormData, cartItems: CartItem[], totalAmount: number) {
   const supabase = await createClient()
   
-  const { data: { user } } = await supabase.auth.getUser()
+  let { data: { user } } = await supabase.auth.getUser()
 
   const fullName = formData.get('full_name') as string
   const email = formData.get('email') as string
+  const password = formData.get('password') as string
   const phone = formData.get('phone') as string
   const addressLine1 = formData.get('address_line1') as string
   const addressLine2 = formData.get('address_line2') as string
@@ -28,6 +29,33 @@ export async function processCheckout(formData: FormData, cartItems: CartItem[],
     state,
     postal_code: postalCode,
     country
+  }
+
+  // Handle Authentication during checkout
+  if (!user && password) {
+    // Try to log in first in case the account exists
+    const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (signInError) {
+      // If sign in fails, attempt to sign up
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: fullName }
+        }
+      })
+      
+      if (signUpError) {
+        return { error: 'Authentication failed. Please check your credentials or try a different email.' }
+      }
+      user = signUpData.user
+    } else {
+      user = signInData.user
+    }
   }
 
   // Generate a random order number
