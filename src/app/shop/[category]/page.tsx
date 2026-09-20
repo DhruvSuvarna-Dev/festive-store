@@ -24,14 +24,17 @@ export default async function CategoryPage({
     notFound()
   }
 
-  // Fetch products for this category
-  const { data: products } = await supabase
-    .from('products')
-    .select('*, product_images(image_url, alt_text)')
-    .eq('is_active', true)
+  // Fetch products for this category using the joining table
+  const { data: categoryProducts } = await supabase
+    .from('product_categories')
+    .select('product_id, products(*, product_images(image_url, alt_text))')
     .eq('category_id', category.id)
-    .order('created_at', { ascending: false })
     .returns<any[]>()
+
+  // Extract products and filter by is_active
+  const products = categoryProducts
+    ?.map(cp => cp.products)
+    .filter(p => p && p.is_active) || []
 
   return (
     <div className="container mx-auto px-4 py-12 flex-1">

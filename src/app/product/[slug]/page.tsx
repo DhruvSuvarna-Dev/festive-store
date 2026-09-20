@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const { data: product } = await supabase
     .from('products')
-    .select('name, description')
+    .select('*, product_categories(categories(name, slug)), product_images(image_url, alt_text)')
     .eq('slug', slug)
     .single<any>()
 
@@ -41,7 +41,7 @@ export default async function ProductDetailPage({
 
   const { data: product } = await supabase
     .from('products')
-    .select('*, category:categories(name, slug), product_images(image_url, alt_text)')
+    .select('*, product_categories(categories(name, slug)), product_images(image_url, alt_text)')
     .eq('slug', slug)
     .single<any>()
 
@@ -51,6 +51,9 @@ export default async function ProductDetailPage({
 
   const images = product.product_images || []
   const primaryImage = images[0]?.image_url
+  
+  // Extract categories from joining table
+  const categories = product.product_categories?.map((pc: any) => pc.categories).filter(Boolean) || []
   
   const hasDiscount = product.compare_at_price && product.compare_at_price > product.price
   const discountPercent = hasDiscount 
@@ -105,12 +108,12 @@ export default async function ProductDetailPage({
 
         {/* Product Details */}
         <div className="flex flex-col">
-          <div className="mb-2">
-            {product.category && (
-              <a href={`/shop/${product.category.slug}`} className="text-sm font-medium text-primary hover:underline uppercase tracking-wider">
-                {product.category.name}
+          <div className="mb-2 flex flex-wrap gap-2">
+            {categories.map((category: any, idx: number) => (
+              <a key={idx} href={`/shop/${category.slug}`} className="text-sm font-medium text-primary hover:underline uppercase tracking-wider">
+                {category.name}
               </a>
-            )}
+            ))}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">{product.name}</h1>
           

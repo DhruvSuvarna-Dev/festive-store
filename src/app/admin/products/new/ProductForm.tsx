@@ -44,18 +44,28 @@ export default function ProductForm({ categories }: { categories: any[] }) {
               <Input id="slug" name="slug" required placeholder="e.g. handmade-diya-set" />
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="category_id">Category</Label>
-              <select 
-                id="category_id" 
-                name="category_id" 
-                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <option value="">Select Category...</option>
-                {categories.map(c => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
-                ))}
-              </select>
+            <div className="space-y-2 md:col-span-2">
+              <Label>Categories</Label>
+              {categories.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 border rounded-md p-4 bg-muted/20">
+                  {categories.map((category) => (
+                    <div key={category.id} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id={`cat-${category.id}`}
+                        name="category_ids"
+                        value={category.id}
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <Label htmlFor={`cat-${category.id}`} className="font-normal cursor-pointer">
+                        {category.name}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">No categories found. Create one first.</p>
+              )}
             </div>
             
             <div className="space-y-2">
