@@ -1,13 +1,16 @@
 const { createClient } = require('@supabase/supabase-js')
 require('dotenv').config({ path: '.env.local' })
 
+// USING THE SECURE SERVICE ROLE KEY TO BYPASS RLS
+const SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1bGh6ZW55YWFhZndrdGpjbnV3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4OTgwNjgwOCwiZXhwIjoyMTA1MzgyODA4fQ.fGfCXUnAKGRY5JKpe4B0LI9BtWV5DRTJ8QLlJXSrhZs'
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  SERVICE_ROLE_KEY
 )
 
 async function run() {
-  console.log('Starting DB update...')
+  console.log('Starting DB update with Admin Privileges...')
   
   // 1. Check if Diwali category exists
   let { data: category } = await supabase
@@ -34,17 +37,16 @@ async function run() {
       return
     }
     category = newCat
+    console.log('Category created with ID:', category.id)
   }
 
   // 2. Update Diya product
   console.log(`Updating Diya product with category_id: ${category.id}...`)
   
-  // We look for the product where slug is 'handmade-diyas' or name is 'Diya'
-  // Earlier we formatted the slug to 'handmade-diyas' if they updated it, or maybe it's still 'handmade diyas'
   const { data: product, error: findError } = await supabase
     .from('products')
     .select('id, slug')
-    .ilike('name', 'Diya')
+    .ilike('name', '%Diya%')
     .limit(1)
     .single()
 
@@ -61,7 +63,7 @@ async function run() {
   if (updateError) {
     console.error('Error updating product:', updateError)
   } else {
-    console.log('Success! Product updated.')
+    console.log('Success! Product successfully assigned to Diwali category.')
   }
 }
 

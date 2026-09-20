@@ -24,8 +24,8 @@ export default function Navbar() {
                 <Link href="/" className="text-lg font-semibold">Home</Link>
                 <Link href="/shop" className="text-lg font-semibold">Shop All</Link>
                 <Link href="/shop/diwali" className="text-lg">Diwali</Link>
-                <Link href="/shop/christmas" className="text-lg">Christmas</Link>
-                <Link href="/shop/gift-hampers" className="text-lg">Gift Hampers</Link>
+                <Link href="/shop/navratri" className="text-lg">Navratri</Link>
+                <Link href="/shop/ganesh-chaturthi" className="text-lg">Ganesh Chaturthi</Link>
                 <Link href="/about" className="text-lg font-semibold mt-4">About</Link>
                 <Link href="/contact" className="text-lg font-semibold">Contact</Link>
               </nav>
@@ -44,8 +44,8 @@ export default function Navbar() {
               <div className="absolute top-full left-0 hidden group-hover:block w-48 pt-2">
                 <div className="bg-popover border text-popover-foreground rounded-md shadow-md p-2 flex flex-col gap-1">
                   <Link href="/shop/diwali" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Diwali</Link>
-                  <Link href="/shop/christmas" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Christmas</Link>
-                  <Link href="/shop/gift-hampers" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Gift Hampers</Link>
+                  <Link href="/shop/navratri" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Navratri</Link>
+                  <Link href="/shop/ganesh-chaturthi" className="px-3 py-2 text-sm hover:bg-muted rounded-sm">Ganesh Chaturthi</Link>
                 </div>
               </div>
             </div>
