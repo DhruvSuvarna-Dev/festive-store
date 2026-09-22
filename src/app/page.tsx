@@ -45,7 +45,7 @@ export default async function HomePage() {
             <Link href="/shop" className={cn(buttonVariants({ size: 'lg' }), "w-full sm:w-auto text-lg px-8")}>
               Shop Now
             </Link>
-            <Link href="/shop/gift-hampers" className={cn(buttonVariants({ size: 'lg', variant: 'outline' }), "w-full sm:w-auto text-lg px-8")}>
+            <Link href="/product/hampers-small" className={cn(buttonVariants({ size: 'lg', variant: 'outline' }), "w-full sm:w-auto text-lg px-8")}>
               View Hampers
             </Link>
           </div>
