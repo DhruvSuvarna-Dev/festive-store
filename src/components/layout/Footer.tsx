@@ -20,7 +20,7 @@ export default function Footer() {
               <li><Link href="/shop" className="hover:text-foreground transition-colors">All Products</Link></li>
               <li><Link href="/shop/diwali" className="hover:text-foreground transition-colors">Diwali Collection</Link></li>
               <li><Link href="/shop/christmas" className="hover:text-foreground transition-colors">Christmas Shop</Link></li>
-              <li><Link href="/shop/gift-hampers" className="hover:text-foreground transition-colors">Gift Hampers</Link></li>
+              <li><Link href="/product/hampers-small" className="hover:text-foreground transition-colors">Gift Hampers</Link></li>
             </ul>
           </div>
           
